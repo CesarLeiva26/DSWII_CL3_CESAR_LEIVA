@@ -25,13 +25,13 @@ public class DetalleUsuarioService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Usuario usuario = usuarioRepository.nomUsuario(username);
+        Usuario usuario = usuarioRepository.findByNomusuario(username);
         return autenticacionUsuario(
                 usuario, obtenerListaRolesUsuario(usuario.getRoles()));
     }
 
     public Usuario findByNomsuario(String usuario){
-        return usuarioRepository.nomUsuario(usuario);
+        return usuarioRepository.findByNomusuario(usuario);
     }
 
     public List<GrantedAuthority> obtenerListaRolesUsuario(Set<Rol> litaRoles){
